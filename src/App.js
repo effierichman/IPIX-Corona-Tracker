@@ -52,7 +52,7 @@ class App extends React.Component {
                 className=" shadow rounded max-w-full h-auto align-middle border-none"
               />
               <div>
-                <h1>Covid-19 Tracker</h1>
+                <h1>IPIX Covid-19 Tracker</h1>
               </div>
             </div>
           </div>
