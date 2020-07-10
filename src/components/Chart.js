@@ -83,9 +83,9 @@ const Chart = () => {
   ) : null;
 
   return (
-    <div>
-      <div className="flex flex-wrap p-4 justify-evenly">{lineChart}</div>
-      <div className="flex flex-wrap p-4 justify-evenly">{lineChart1}</div>
+    <div className="flex flex-wrap p-4 justify-evenly justify-center">
+      <div className=" w-3/4 h-100">{lineChart}</div>
+      <div className=" w-3/4 h-100">{lineChart1}</div>
     </div>
   );
 };

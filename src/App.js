@@ -35,23 +35,25 @@ class App extends React.Component {
 
     return (
       <div className=" p-4 justify-evenly">
-        {/* <div className="h-24 w-64">
-          <img
-            src={leo}
-            alt="..."
-            className="shadow rounded max-w-full h-auto align-middle border-none"
-          />
-        </div> */}
-
-        <div className="flex flex-wrap p-4 justify-evenly font-bold text-3xl bg-white ">
-          <div>
+        <div className="flex flex-wrap p-4 justify-evenly justify-center">
+          <div className="h-24 w-64">
             <img
-              src={covid}
+              src={leo}
               alt="..."
-              className=" shadow rounded max-w-full h-auto align-middle border-none"
+              className="shadow rounded max-w-full h-auto align-middle border-none"
             />
+          </div>
+
+          <div className="font-bold text-3xl bg-white ">
             <div>
-              <h1>Covid-19 Tracker</h1>
+              <img
+                src={covid}
+                alt="..."
+                className=" shadow rounded max-w-full h-auto align-middle border-none"
+              />
+              <div>
+                <h1>Covid-19 Tracker</h1>
+              </div>
             </div>
           </div>
         </div>
