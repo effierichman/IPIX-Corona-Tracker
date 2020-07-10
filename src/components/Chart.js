@@ -3,18 +3,22 @@ import { Line } from "react-chartjs-2";
 
 import { fetchUSDailyData } from "../api";
 import { Legend } from "recharts";
+import { getDailyDif } from "../api/helper";
 
 const Chart = () => {
-  const [usDailyData, setUsDailyData] = useState({});
+  const [usDailyData, setUsDailyData] = useState([]);
+  const [usDailyDataDif, setUsDailyDataDif] = useState([]);
 
   useEffect(() => {
     const fetchedUsDailyData = async () => {
       const dailyDataUS = await fetchUSDailyData();
       setUsDailyData(dailyDataUS);
+      setUsDailyDataDif(getDailyDif(dailyDataUS));
     };
     fetchedUsDailyData();
   }, []);
   console.log(usDailyData);
+  console.log(usDailyDataDif);
 
   const lineChart = usDailyData.length ? (
     <Line
@@ -55,10 +59,10 @@ const Chart = () => {
         },
       }}
       data={{
-        labels: usDailyData.map(({ date }) => date),
+        labels: usDailyDataDif.map(({ date }) => date),
         datasets: [
           {
-            data: usDailyData.map(({ postive }) => postive),
+            data: usDailyDataDif.map(({ postive }) => postive),
             label: "Positives",
             borderColor: "red",
             backgroundColor: "rgba(250, 0, 0, .25)",
@@ -66,7 +70,7 @@ const Chart = () => {
             fill: true,
           },
           {
-            data: usDailyData.map(({ death }) => death),
+            data: usDailyDataDif.map(({ death }) => death),
             label: "Deaths",
             borderColor: "black",
             pointBackgroundColor: "black",
