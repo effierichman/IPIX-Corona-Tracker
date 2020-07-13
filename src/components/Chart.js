@@ -9,6 +9,12 @@ const Chart = () => {
   const [usDailyData, setUsDailyData] = useState([]);
   const [usDailyDataDif, setUsDailyDataDif] = useState([]);
 
+  const casesLineColor = "rgba(250, 0, 0, .5)";
+  const casesLineColor2 = "rgba(250, 0, 0, .25)";
+
+  const deathsLineColor = "rgba(0, 53, 85, .5)";
+  const deathsLineColor2 = "rgba(0, 53, 85, .25)";
+
   useEffect(() => {
     const fetchedUsDailyData = async () => {
       const dailyDataUS = await fetchUSDailyData();
@@ -19,7 +25,6 @@ const Chart = () => {
   }, []);
   console.log(usDailyData);
   console.log(usDailyDataDif);
-
   const lineChart = usDailyData.length ? (
     <Line
       legend={{
@@ -33,17 +38,19 @@ const Chart = () => {
           {
             data: usDailyData.map(({ postive }) => postive),
             label: "Positives",
-            borderColor: "red",
-            backgroundColor: "rgba(250, 0, 0, .25)",
-            pointBackgroundColor: "red",
+            borderColor: casesLineColor,
+            backgroundColor: casesLineColor2,
+            pointBackgroundColor: casesLineColor2,
+            pointBorderColor: casesLineColor,
             fill: true,
           },
           {
             data: usDailyData.map(({ death }) => death),
             label: "Deaths",
-            borderColor: "black",
-            pointBackgroundColor: "black",
-            backgroundColor: "rgba(0, 0, 250, .25)",
+            borderColor: deathsLineColor,
+            backgroundColor: deathsLineColor2,
+            pointBackgroundColor: deathsLineColor2,
+            pointBorderColor: deathsLineColor,
             fill: true,
           },
         ],
