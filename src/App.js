@@ -1,5 +1,6 @@
 import React from "react";
 import Cards from "./components/Cards";
+import Toggle from "./components/Toggle";
 // import { Image, Header } from "tailwind-react-ui";
 import leo from "./Leo.png";
 import covid from "./corona.png";
@@ -36,7 +37,7 @@ class App extends React.Component {
     return (
       <div className=" p-4 justify-evenly">
         <div className="flex flex-wrap p-4 justify-evenly justify-center">
-          <div className="h-24 w-64">
+          <div className="h-16 w-24">
             <img
               src={leo}
               alt="..."
@@ -57,6 +58,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <Toggle />
         <Cards fetchedData={fetchedData} />
         <Chart />
       </div>
