@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 
-import { fetchUSDailyData } from "../api";
-import { Legend } from "recharts";
-import { getDailyDif } from "../api/helper";
+import { fetchUSDailyData, fetchUSDailyDataLabel } from "../api";
+import { getDailyDif, processUsDailyLabels } from "../api/helper";
 
 const Chart = () => {
   const [usDailyData, setUsDailyData] = useState([]);
+  const [usLabelData, setUsLabelData] = useState([]);
   const [usDailyDataDif, setUsDailyDataDif] = useState([]);
 
   const casesLineColor = "rgba(250, 0, 0, .5)";
@@ -23,15 +23,19 @@ const Chart = () => {
     };
     fetchedUsDailyData();
   }, []);
-  console.log(usDailyData);
-  console.log(usDailyDataDif);
+
+  useEffect(() => {
+    const labelHelper = async () => {
+      let labels = await fetchUSDailyDataLabel();
+      console.log(labels);
+      setUsLabelData(labels);
+    };
+    labelHelper();
+  }, []);
+  console.log(usLabelData);
+
   const lineChart = usDailyData.length ? (
     <Line
-      legend={{
-        labels: {
-          fillStyle: "rgb(250, 250, 250)",
-        },
-      }}
       data={{
         labels: usDailyData.map(({ date }) => date),
         datasets: [
@@ -60,11 +64,6 @@ const Chart = () => {
 
   const lineChart1 = usDailyData.length ? (
     <Line
-      legend={{
-        labels: {
-          fillStyle: "rgb(250, 250, 250)",
-        },
-      }}
       data={{
         labels: usDailyDataDif.map(({ date }) => date),
         datasets: [

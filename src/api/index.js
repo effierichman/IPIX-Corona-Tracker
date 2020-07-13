@@ -1,5 +1,5 @@
 import axios from "axios";
-import { processUsDailyCount } from "./helper";
+import { processUsDailyCount, processUsDailyLabels } from "./helper";
 
 const urlUS = "https://covidtracking.com/api/us";
 const urlUSDaily = "https://covidtracking.com/api/us/daily";
@@ -51,6 +51,23 @@ export const fetchUSDailyData = async () => {
     return processUsDailyCount(data);
     // console.log(dataList.reverse());
   } catch (error) {}
+};
+
+export const fetchUSDailyDataLabel = async () => {
+  try {
+    const { data } = await axios.get(urlUSDaily);
+    console.log(data);
+    return processUsDailyLabels(data);
+    // console.log(dataList.reverse());
+  } catch (error) {}
+};
+
+export const fetchStates = async () => {
+  try {
+    const { data } = await axios.get(urlUSDaily);
+  } catch (error) {
+    return error;
+  }
 };
 
 export const fetchStatesData = async () => {

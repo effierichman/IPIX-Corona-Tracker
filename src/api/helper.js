@@ -9,6 +9,16 @@ export const processUsDailyCount = (data) => {
   return dataList.reverse();
 };
 
+export const processUsDailyLabels = (data) => {
+  const dataList = data.map(({ date }, index) => ({
+    date:
+      index === 0 || index % 6 === 0
+        ? moment(date.toString()).format("MMM Do")
+        : "",
+  }));
+  return dataList.reverse();
+};
+
 export const getDailyDif = (data) => {
   let newDailyCounts = [];
 
